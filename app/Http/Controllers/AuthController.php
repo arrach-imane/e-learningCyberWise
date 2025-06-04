@@ -63,9 +63,9 @@ class AuthController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if (!$user || $user->role !== 'learner') {
+        if (!$user) {
             return back()->withErrors([
-                'email' => 'The provided credentials do not match our records.',
+                'email' => 'The provided email address was not found in our records.',
             ]);
         }
 
@@ -77,7 +77,18 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('');
+
+            // Redirection basée sur le rôle
+            switch ($user->role) {
+                case 'admin':
+                    return redirect()->intended('admin/dashboard');
+                case 'teacher':
+                    return redirect()->intended('teacher/dashboard');
+                case 'learner':
+                    return redirect()->intended('');
+                default:
+                    return redirect()->intended('');
+            }
         }
 
         return back()->withErrors([
@@ -197,36 +208,36 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         // Check if user with provided email exists
         $user = User::where('email', $credentials['email'])->first();
-    
+
         // If user does not exist or is not a teacher, return with error
         if (!$user || $user->role !== 'teacher') {
             return back()->withErrors([
                 'email' => 'The provided email address was not found in our records.',
             ]);
         }
-    
+
         // Check if password matches
         if (!Hash::check($credentials['password'], $user->password)) {
             return back()->withErrors([
                 'password' => 'The provided password is incorrect.',
             ]);
         }
-    
+
         // Attempt to authenticate the user
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('teacher/dashboard')->with('success', 'Login successfully.');
         }
-    
+
         // If authentication fails for any other reason, return with error
         return back()->withErrors([
             'email' => 'Authentication failed. Please try again.',
         ]);
     }
-    
+
 
     public function teacher_forgotpassword()
     {

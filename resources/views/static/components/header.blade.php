@@ -32,8 +32,6 @@
             --text-light: #64748b;
             --bg-color: #ffffff;
             --border-color: #e2e8f0;
-            --gradient-start: #1e40af;
-            --gradient-end: #3b82f6;
         }
 
         @keyframes gradient {
@@ -56,12 +54,13 @@
 
         .mainheader-area {
             background: var(--bg-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
             background: rgba(255, 255, 255, 0.98);
+            padding: 0.5rem 0;
         }
 
         .logo a {
@@ -86,65 +85,35 @@
             color: var(--accent-color);
         }
 
-        .horizontal-menu {
-            background: transparent;
-        }
-
-        .horizontal-menu ul li a {
-            color: var(--text-color);
-            font-weight: 500;
-            padding: 0.75rem 1.25rem;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .horizontal-menu ul li a:hover {
-            color: var(--primary-color);
-            background: rgba(30, 64, 175, 0.05);
-            transform: translateY(-2px);
-        }
-
         .search-box {
             position: relative;
-            max-width: 400px;
-            margin: 0 auto;
+            max-width: 200px;
+            margin: 0;
         }
 
         .search-box input {
             width: 100%;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 1rem;
             padding-right: 2.5rem;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: #f8fafc;
         }
 
-        .search-box input:focus {
-            border-color: var(--primary-color);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
-            outline: none;
-        }
-
         .search-box button {
             position: absolute;
-            right: 8px;
+            right: 6px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
             transition: all 0.3s ease;
             background: transparent;
             border: none;
-            padding: 6px;
+            padding: 4px;
             border-radius: 50%;
-        }
-
-        .search-box button:hover {
-            color: var(--primary-color);
-            background: rgba(30, 64, 175, 0.1);
+            font-size: 0.85rem;
         }
 
         .notification-area {
@@ -369,6 +338,90 @@
             color: var(--text-color);
             font-weight: 400;
         }
+
+        .header-bottom {
+            background: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+            padding: 0.5rem 0;
+        }
+
+        .horizontal-menu {
+            background: transparent;
+        }
+
+        .horizontal-menu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .horizontal-menu ul li {
+            position: relative;
+            margin-left: 0.5rem;
+        }
+
+        .horizontal-menu ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .horizontal-menu ul li a:hover {
+            color: var(--primary-color);
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .horizontal-menu .icon-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .horizontal-menu .icon-name {
+            font-size: 0.9rem;
+        }
+
+        .horizontal-menu .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            min-width: 200px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .horizontal-menu li:hover .submenu {
+            display: block;
+        }
+
+        .horizontal-menu .submenu li {
+            margin: 0;
+        }
+
+        .horizontal-menu .submenu li a {
+            padding: 0.5rem 1rem;
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .horizontal-menu .submenu li a:hover {
+            background: rgba(30, 64, 175, 0.05);
+            color: var(--primary-color);
+        }
     </style>
 </head>
 
@@ -395,16 +448,10 @@
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="header-area header-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-9  d-none d-lg-block">
+                    <div class="col-lg-3">
                         <div class="horizontal-menu">
                             <nav>
-                                <ul id="nav_menu">
+                                <ul id="nav_menu" class="d-flex justify-content-end">
                                     <li>
                                         <a href="{{ url('') }}">
                                             <div class="icon-container">
@@ -415,26 +462,23 @@
                                     <li>
                                         <a href="javascript:void(0)">
                                             <div class="icon-container">
-                                                <span class="ti-briefcase"></span><span
-                                                    class="icon-name">Categories</span>
+                                                <span class="ti-briefcase"></span><span class="icon-name">Categories</span>
                                             </div>
                                         </a>
                                         <ul class="submenu">
                                             @foreach ($categories as $category)
                                                 <li>
-                                                    <a
-                                                        href="{{ url('category', ['id' => $category->category_id]) }}">{{ $category->category_title }}</a>
+                                                    <a href="{{ url('category', ['id' => $category->category_id]) }}">{{ $category->category_title }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </li>
-                                    @if (auth()->check())
+                                    @auth
                                         @if (auth()->user()->role == 'teacher')
                                             <li>
                                                 <a href="{{ url('/teacher/dashboard') }}">
                                                     <div class="icon-container">
-                                                        <span class="ti-dashboard"></span><span
-                                                            class="icon-name">Teacher Dashboard</span>
+                                                        <span class="ti-dashboard"></span><span class="icon-name">Teacher Dashboard</span>
                                                     </div>
                                                 </a>
                                             </li>
@@ -443,27 +487,14 @@
                                         <li>
                                             <a href="{{ url('login') }}">
                                                 <div class="icon-container">
-                                                    <span class="ti-shift-right"></span><span
-                                                        class="icon-name">Log-In</span>
+                                                    <span class="ti-shift-right"></span><span class="icon-name">Log-In</span>
                                                 </div>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="{{ url('/teacher-login') }}">
-                                                <div class="icon-container">
-                                                    <span class="ti-id-badge"></span><span class="icon-name">Become To
-                                                        Teach</span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    @endif
+                                    @endauth
                                 </ul>
                             </nav>
                         </div>
-                    </div>
-                    <!-- mobile_menu -->
-                    <div class="col-12 d-block d-lg-none">
-                        <div id="mobile_menu"></div>
                     </div>
                 </div>
             </div>

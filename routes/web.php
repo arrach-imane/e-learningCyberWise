@@ -10,6 +10,7 @@ use App\Http\Controllers\EnrollController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LearnerController;
 
 //Normal
 Route::get('/', [NormalController::class, 'index']);
@@ -31,19 +32,18 @@ Route::group(['middleware' == ['learner', 'teacher']], function () {
     Route::get('your-enrolls/{id}', [NormalController::class, 'your_enrolls'])->name('profile.enrolls');
 });
 
-
+// Routes d'authentification
 Route::get('signup', [AuthController::class, 'showSignupForm'])->name('signup');
 Route::post('signup', [AuthController::class, 'signup']);
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::get('logout', [AuthController::class, 'logout']);
-Route::get('forgot-password', [AuthController::class, 'forgotpassword']);
-Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
-Route::get('reset/{token}', [AuthController::class, 'reset'])->name('password.reset');;
-Route::post('reset/{token}', [AuthController::class, 'PostReset'])->name('password.update');
+Route::get('forgot-password', [AuthController::class, 'forgotpassword'])->name('password.request');
+Route::post('forgot-password', [AuthController::class, 'postForgotPassword'])->name('password.email');
+Route::get('reset-password/{token}', [AuthController::class, 'reset'])->name('password.reset');
+Route::post('reset-password/{token}', [AuthController::class, 'PostReset'])->name('password.update');
 
-//teacher
-
+// Routes pour les enseignants
 Route::get('teacher-signup', [AuthController::class, 'teacher_showSignupForm'])->name('teacher_signup');
 Route::post('teacher-signup', [AuthController::class, 'teacher_signup']);
 Route::get('teacher-login', [AuthController::class, 'teacher_showLoginForm'])->name('teacher_login');
