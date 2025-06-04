@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Top 1 E-learning In Cambodia</title>
+    <title>CyberWise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{ url('assets/images/icon/favicon.ico') }}">
     <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
@@ -23,6 +23,262 @@
     <link rel="stylesheet" href="{{ url('assets/css/responsive.css') }}">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --primary-hover: #1e3a8a;
+            --accent-color: #3b82f6;
+            --text-color: #1e3a8a;
+            --text-light: #64748b;
+            --bg-color: #ffffff;
+            --border-color: #e2e8f0;
+            --gradient-start: #1e40af;
+            --gradient-end: #3b82f6;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-color);
+            background-color: #f8fafc;
+        }
+
+        .mainheader-area {
+            background: var(--bg-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .logo a {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .logo a:hover {
+            background: rgba(30, 64, 175, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .logo a span {
+            color: var(--accent-color);
+        }
+
+        .horizontal-menu {
+            background: transparent;
+        }
+
+        .horizontal-menu ul li a {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .horizontal-menu ul li a:hover {
+            color: var(--primary-color);
+            background: rgba(30, 64, 175, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-right: 2.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #f8fafc;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+            outline: none;
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .search-box button:hover {
+            color: var(--primary-color);
+            background: rgba(30, 64, 175, 0.1);
+        }
+
+        .notification-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-area li {
+            position: relative;
+        }
+
+        .notification-area li i {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .notification-area li i:hover {
+            color: var(--primary-color);
+            background: rgba(30, 64, 175, 0.1);
+        }
+
+        .notification-area li span {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+        }
+
+        .user-profile:hover {
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .user-profile .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover .avatar {
+            border-color: var(--primary-color);
+        }
+
+        .user-profile .user-name {
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .login-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .login-button:hover {
+            background: var(--primary-hover);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.2);
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 0.75rem;
+            min-width: 220px;
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1rem;
+            color: var(--text-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(30, 64, 175, 0.05);
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 991px) {
+            .horizontal-menu {
+                background: var(--bg-color);
+                padding: 1rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+
+            .mainheader-area {
+                padding: 0.5rem 0;
+            }
+
+            .search-box {
+                margin: 1rem 0;
+            }
+
+            .login-button {
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+    </style>
 </head>
 
 <body class="body-bg">
@@ -39,8 +295,7 @@
                 <div class="row justify-content-center p-3">
                     <div class="col-auto">
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="{{ url('assets/images/icon/logo007_64.ico') }}"
-                                    alt="logo"></a>
+                            <a href="{{ url('/') }}">Cyber<span>Wise</span></a>
                         </div>
                     </div>
                     <!-- profile info & task notification -->
@@ -92,10 +347,9 @@
                                         <a class="dropdown-item" href="{{ url('logout') }}">Log Out</a>
                                     </div>
                                 @else
-                                    <a href="{{ url('login') }}">
-                                        <h4 class="user-name">
-                                            Log-in
-                                        </h4>
+                                    <a href="{{ url('login') }}" class="login-button">
+                                        <i class="ti-shift-right"></i>
+                                        Log in
                                     </a>
                                 @endauth
                             </div>
