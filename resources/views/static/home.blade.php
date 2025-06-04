@@ -2,7 +2,8 @@
 @section('content')
     <!-- Hero Section -->
     <header class="hero text-center"
-        style="background-image: url('{{ asset('photos/1.png') }}'); background-size:cover; background-position:center;">
+    style="background-image: linear-gradient(rgba(30,41,59,0.7), rgba(30,41,59,0.7)), url('{{ asset('photos/1.png') }}'); background-size:cover; background-position:center;">
+    <div class="container">
         <div class="container">
             <h1>Learn Cybersecurity Like a Pro</h1>
             <p class="lead">
@@ -65,11 +66,7 @@
             </p>
         </div>
     </section>
-    <footer class="text-center">
-        <div class="container">
-            <small>&copy; 2024 CyberLearn, All rights reserved.</small>
-        </div>
-    </footer>
+    
     <style>
         .course img {
             transition: transform 0.2s;
