@@ -107,15 +107,17 @@
 
         .search-box {
             position: relative;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .search-box input {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.5rem 1rem;
             padding-right: 2.5rem;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: #f8fafc;
         }
@@ -123,20 +125,20 @@
         .search-box input:focus {
             border-color: var(--primary-color);
             background: white;
-            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
             outline: none;
         }
 
         .search-box button {
             position: absolute;
-            right: 12px;
+            right: 8px;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-light);
             transition: all 0.3s ease;
             background: transparent;
             border: none;
-            padding: 8px;
+            padding: 6px;
             border-radius: 50%;
         }
 
@@ -239,21 +241,59 @@
             border: none;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
-            padding: 0.75rem;
-            min-width: 220px;
+            padding: 1rem;
+            min-width: 280px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
         }
 
         .dropdown-item {
-            padding: 0.75rem 1rem;
+            padding: 1rem;
             color: var(--text-color);
             border-radius: 8px;
             transition: all 0.3s ease;
-            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .dropdown-item:hover {
             background: rgba(30, 64, 175, 0.05);
             color: var(--primary-color);
+        }
+
+        .dropdown-item .time {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .dropdown-item .message {
+            color: var(--text-color);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .dropdown-item.unread {
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .dropdown-item.unread:hover {
+            background: rgba(30, 64, 175, 0.08);
+        }
+
+        .dropdown-item.unread .message {
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         @media (max-width: 991px) {
@@ -278,6 +318,57 @@
                 margin-top: 1rem;
             }
         }
+
+        .notification-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 0.75rem;
+            display: none;
+            z-index: 1000;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-item:hover {
+            background: rgba(30, 64, 175, 0.03);
+        }
+
+        .notification-item.unread {
+            background: rgba(30, 64, 175, 0.05);
+        }
+
+        .notification-item.unread:hover {
+            background: rgba(30, 64, 175, 0.08);
+        }
+
+        .notification-item .time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+
+        .notification-item .message {
+            color: var(--text-color);
+            font-weight: 400;
+        }
     </style>
 </head>
 
@@ -292,67 +383,16 @@
         <!-- main header area start -->
         <div class="mainheader-area">
             <div class="container">
-                <div class="row justify-content-center p-3">
-                    <div class="col-auto">
+                <div class="row align-items-center p-3">
+                    <div class="col-lg-3">
                         <div class="logo">
                             <a href="{{ url('/') }}">Cyber<span>Wise</span></a>
                         </div>
                     </div>
-                    <!-- profile info & task notification -->
-                    <div class="col-md-9 clearfix text-right">
-                        <div class="d-md-inline-block d-block mr-md-4">
-                            <ul class="notification-area">
-                                <li id="full-view"><i class="ti-fullscreen"></i></li>
-                                <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
-                                <li class="dropdown">
-                                    <i class="fa fa-envelope-o dropdown-toggle"
-                                        data-toggle="dropdown"><span>3</span></i>
-                                    <div class="dropdown-menu notify-box nt-enveloper-box">
-                                        <span class="notify-title">You have 3 new notifications <a href="#">view
-                                                all</a></span>
-                                        <div class="nofity-list">
-                                            <a href="#" class="notify-item">
-                                                <div class="notify-thumb">
-                                                    <img src="{{ url('assets/images/author/author-img1.jpg') }}"
-                                                        alt="image">
-                                                </div>
-                                                <div class="notify-text">
-                                                    <p>Aglae Mayer</p>
-                                                    <span class="msg">Hey I am waiting for you...</span>
-                                                    <span>3:15 PM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="settings-btn">
-                                    <i class="ti-settings"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="clearfix d-md-inline-block d-block">
-                            <div class="user-profile m-0">
-                                @auth
-                                    <img class="avatar user-thumb"
-                                        src="{{ Auth::user()->user_photo ? asset('upload/' . basename(Auth::user()->user_photo)) : 'https://img.icons8.com/bubbles/100/000000/user.png' }}"
-                                        alt="avatar">
-                                    <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
-                                        {{ Auth::user()->full_name }}
-                                        <i class="fa fa-angle-down"></i>
-                                    </h4>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item"
-                                            href="{{ route('profile.show', ['id' => auth()->id()]) }}">Profile</a>
-                                        <a class="dropdown-item" href="#">Settings</a>
-                                        <a class="dropdown-item" href="{{ url('logout') }}">Log Out</a>
-                                    </div>
-                                @else
-                                    <a href="{{ url('login') }}" class="login-button">
-                                        <i class="ti-shift-right"></i>
-                                        Log in
-                                    </a>
-                                @endauth
-                            </div>
+                    <div class="col-lg-6">
+                        <div class="search-box">
+                            <input type="text" placeholder="Rechercher..." class="form-control">
+                            <button type="submit"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
@@ -419,18 +459,6 @@
                                     @endif
                                 </ul>
                             </nav>
-                        </div>
-                    </div>
-                    <!-- nav and search button -->
-                    <div class="col-lg-3 clearfix">
-                        <div class="search-box">
-                            <form action="{{ route('search_courses') }}" method="GET" class="d-flex">
-                                <input type="text" name="search" value="{{ Request::get('search') }}"
-                                    placeholder="Search For Anything ..." class="form-control" required>
-                                <button type="submit" class="btn btn-link p-0 ml-2">
-                                    <i class="ti-search"></i>
-                                </button>
-                            </form>
                         </div>
                     </div>
                     <!-- mobile_menu -->
