@@ -21,7 +21,8 @@ Route::get('teacher_courses/{id?}', [NormalController::class, 'teacher_courses']
 
 //learner
 
-Route::group(['middleware' == ['learner', 'teacher']], function () {
+Route::group(['middleware' => ['learner']], function () {
+    Route::get('learner/dashboard', [LearnerController::class, 'dashboard'])->name('learner.dashboard');
     Route::get('courses/{id}', [NormalController::class, 'courses'])->name('static.course');
     Route::post('bank', [NormalController::class, 'bank']);
     Route::post('buy-course', [NormalController::class, 'buyCourse'])->name('buy-course');

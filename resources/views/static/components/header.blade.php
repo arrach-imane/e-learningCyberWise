@@ -460,18 +460,11 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)">
+                                        <a href="{{ url('category/1') }}">
                                             <div class="icon-container">
-                                                <span class="ti-briefcase"></span><span class="icon-name">Categories</span>
+                                                <span class="ti-book"></span><span class="icon-name">Courses</span>
                                             </div>
                                         </a>
-                                        <ul class="submenu">
-                                            @foreach ($categories as $category)
-                                                <li>
-                                                    <a href="{{ url('category', ['id' => $category->category_id]) }}">{{ $category->category_title }}</a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
                                     </li>
                                     @auth
                                         @if (auth()->user()->role == 'teacher')
@@ -479,6 +472,14 @@
                                                 <a href="{{ url('/teacher/dashboard') }}">
                                                     <div class="icon-container">
                                                         <span class="ti-dashboard"></span><span class="icon-name">Teacher Dashboard</span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        @elseif (auth()->user()->role == 'learner')
+                                            <li>
+                                                <a href="{{ url('/learner/dashboard') }}">
+                                                    <div class="icon-container">
+                                                        <span class="ti-dashboard"></span><span class="icon-name">My Dashboard</span>
                                                     </div>
                                                 </a>
                                             </li>
