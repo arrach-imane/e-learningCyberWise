@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Top 1 E-learning In Cambodia</title>
+    <title>Top 1 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/assets/images/icon/favicon.ico">
 
@@ -51,16 +51,7 @@
     <!-- page container area start -->
     <div class="page-container">
         <!-- sidebar menu area start -->
-        <div class="sidebar-menu">
-            <div class="sidebar-header p-3 bg-dark d-flex justify-content-center align-items-center">
-                <div class="logo d-flex align-items-center">
-                    <a href="{{ url('') }}" class="d-flex align-items-center text-decoration-none">
-                        <img src="/assets/images/icon/logo007_64.ico" alt="Website Logo" class="img-fluid mr-2"
-                            style="width: 64px; height: 64px;">
-                        <h3 class="text-warning mb-0"><i class="ti-share-alt"></i> Exit</h3>
-                    </a>
-                </div>
-            </div>
+        <div class="sidebar-menu" style="background: #fff;">
             <div class="main-menu">
                 <div class="menu-inner">
                     <nav>
@@ -127,7 +118,7 @@
 
         @yield('content')
 
-        @include('admin.layout.footer')
+        @include('static.components.footer')
         @include('admin.script.script_table')
         @include('admin.style.style')
     </div>
@@ -199,6 +190,28 @@
 
     <!-- Custom Scripts -->
     <script src="/assets/js/scripts.js"></script>
+
+    <style>
+    .logo a {
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--primary-color, #0d6efd);
+        text-decoration: none;
+        letter-spacing: -1px;
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    .logo a:hover {
+        background: rgba(30, 64, 175, 0.05);
+        transform: translateY(-2px);
+    }
+    .logo a span {
+        color: var(--accent-color, #f7cb3f);
+    }
+    </style>
 </body>
 
 </html>

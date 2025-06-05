@@ -1,67 +1,64 @@
 @extends('teacher.layout.header')
 @section('content')
-    <div class="main-content-inner">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row mt-3">
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <div class="seo-fact sbg4">
-                                <div class="statistics-content p-4 d-flex justify-content-between align-items-center">
-                                    <div class="seofct-icon">
-                                        <i class="fa fa-university"></i> My Balance:
-                                    </div>
-                                    <h2>{{ $userBankCost }}$</h2>
-                                </div>
-                                <canvas id="seolinechart1" height="50"></canvas>
-                            </div>
+    <!-- Hero Section -->
+    <header class="hero text-center">
+        <div class="container">
+            <h1>Welcome to your Teacher Dashboard</h1>
+            <p class="lead">
+                Here you can find your course and lesson statistics, as well as tools to manage your educational content.
+            </p>
+        </div>
+    </header>
+    <div class="container mt-5">
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-2">
+                            <i class="ti-bookmark-alt" style="font-size:2rem;color: var(--primary-color);"></i>
                         </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <div class="seo-fact sbg2">
-                                <div class="statistics-content p-4 d-flex justify-content-between align-items-center">
-                                    <div class="seofct-icon">
-                                        <i class="ti-bookmark-alt"></i> Total Courses:
-                                    </div>
-                                    <h2>{{ $totalcourses }}</h2>
-                                </div>
-                                <canvas id="seolinechart2" height="50"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-3">
-                        <div class="card">
-                            <div class="seo-fact sbg1">
-                                <div class="statistics-content p-4 d-flex justify-content-between align-items-center">
-                                    <div class="seofct-icon">
-                                        <i class="ti-wallet"></i> Total Lessons:
-                                    </div>
-                                    <h2>{{ $totallessons }}</h2>
-                                </div>
-                            </div>
-                        </div>
+                        <h5 class="card-title">Total Courses</h5>
+                        <h2 class="fw-bold">{{ $totalcourses }}</h2>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 mt-5">
-                <div class="card">
-                    <div class="card-body pb-0">
-                        <h4 class="header-title">Social ads Campaign</h4>
-                        <div id="socialads" style="height: 245px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-8 mt-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-title">User Statistics</h4>
-                        <div id="user-statistics"></div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <div class="mb-2">
+                            <i class="ti-wallet" style="font-size:2rem;color: var(--primary-color);"></i>
+                        </div>
+                        <h5 class="card-title">Total Lessons</h5>
+                        <h2 class="fw-bold">{{ $totallessons }}</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        .hero {
+            color: #252222;
+            padding: 80px 0 60px 0;
+            background-size: cover;
+            background-position: center;
+        }
+        .hero h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+        .hero .lead {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .card {
+            border-radius: 1rem;
+        }
+        .fw-bold {
+            font-weight: 700 !important;
+        }
+    </style>
 @endsection
