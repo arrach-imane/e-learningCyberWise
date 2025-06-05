@@ -24,10 +24,7 @@
                 <i class="ti-video-camera"></i>
                 <span>Lessons</span>
             </a>
-            <a href="{{ url('admin/category') }}">
-                <i class="ti-layers"></i>
-                <span>Categories</span>
-            </a>
+
             <div class="nav-divider"></div>
             <a href="{{ url('logout') }}" class="logout">
                 <i class="ti-power-off"></i>
@@ -88,7 +85,7 @@
                     <div class="stat-label">Total Lessons</div>
                 </div>
             </div>
-            <div class="stat-box">
+            <!-- <div class="stat-box">
                 <div class="stat-icon">
                     <i class="ti-layers"></i>
                 </div>
@@ -96,7 +93,7 @@
                     <div class="stat-value">{{ $totalcategory }}</div>
                     <div class="stat-label">Categories</div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Teacher Stats -->

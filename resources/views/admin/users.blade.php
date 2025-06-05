@@ -5,44 +5,34 @@
     <div class="sidebar">
         <div class="logo">
             <i class="ti-layout-grid2"></i>
-            <h2>E-Learning</h2>
+            <h2>Admin</h2>
         </div>
         <nav>
-            <div class="nav-section">
-                <span class="nav-label">Main</span>
-                <a href="{{ url('admin/dashboard') }}">
-                    <i class="ti-home"></i>
-                    <span>Dashboard</span>
-                </a>
-                <a href="{{ url('admin/users') }}" class="active">
-                    <i class="ti-user"></i>
-                    <span>Users</span>
-                </a>
-            </div>
-
-            <div class="nav-section">
-                <span class="nav-label">Content</span>
-                <a href="{{ url('admin/courses') }}">
-                    <i class="ti-book"></i>
-                    <span>Courses</span>
-                </a>
-                <a href="{{ url('admin/lessons') }}">
-                    <i class="ti-video-camera"></i>
-                    <span>Lessons</span>
-                </a>
-                <!-- <a href="{{ url('admin/category') }}">
-                    <i class="ti-layers"></i>
-                    <span>Categories</span>
-                </a> -->
-            </div>
-
-            <div class="nav-section">
-                <span class="nav-label">Account</span>
-                <a href="{{ url('logout') }}" class="logout">
-                    <i class="ti-power-off"></i>
-                    <span>Logout</span>
-                </a>
-            </div>
+            <a href="{{ url('admin/dashboard') }}">
+                <i class="ti-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="{{ url('admin/users') }}" class="active">
+                <i class="ti-user"></i>
+                <span>Users</span>
+            </a>
+            <a href="{{ url('admin/courses') }}">
+                <i class="ti-book"></i>
+                <span>Courses</span>
+            </a>
+            <a href="{{ url('admin/lessons') }}">
+                <i class="ti-video-camera"></i>
+                <span>Lessons</span>
+            </a>
+            <a href="{{ url('admin/category') }}">
+                <i class="ti-layers"></i>
+                <span>Categories</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a href="{{ url('logout') }}" class="logout">
+                <i class="ti-power-off"></i>
+                <span>Logout</span>
+            </a>
         </nav>
     </div>
 
@@ -50,13 +40,22 @@
     <div class="main-content">
         <div class="header">
             <div class="header-left">
-                <h1>Users</h1>
+                <div class="page-title">
+                    <h1>Users Management</h1>
+                    <p>Manage all platform users</p>
+                </div>
             </div>
             <div class="header-right">
-                <a href="{{ url('logout') }}" class="logout-btn">
-                    <i class="ti-power-off"></i>
-                    <span>Logout</span>
-                </a>
+                <div class="header-actions">
+                    <div class="date">
+                        <i class="ti-calendar"></i>
+                        <span>{{ date('F d, Y') }}</span>
+                    </div>
+                    <a href="{{ url('logout') }}" class="logout-btn">
+                        <i class="ti-power-off"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -68,12 +67,18 @@
                     <i class="ti-search"></i>
                     <input type="text" placeholder="Search users..." class="search-input">
                 </div>
-                <select class="filter-select">
-                    <option value="">All Roles</option>
-                    <option value="learner">Learners</option>
-                    <option value="teacher">Teachers</option>
-                    <option value="admin">Admins</option>
-                </select>
+                <div class="filter-actions">
+                    <select class="filter-select">
+                        <option value="">All Roles</option>
+                        <option value="learner">Learners</option>
+                        <option value="teacher">Teachers</option>
+                        <option value="admin">Admins</option>
+                    </select>
+                    <button class="add-user-btn">
+                        <i class="ti-plus"></i>
+                        Add User
+                    </button>
+                </div>
             </div>
 
             <!-- Users Table -->
@@ -84,6 +89,7 @@
                             <th>User</th>
                             <th>Role</th>
                             <th>Email</th>
+                            <th>Status</th>
                             <th>Joined Date</th>
                             <th>Actions</th>
                         </tr>
@@ -94,15 +100,11 @@
                             <td>
                                 <div class="user-info">
                                     <div class="user-avatar">
-                                        @if($user->user_photo)
-                                            <img src="{{ asset('upload/' . basename($user->user_photo)) }}" alt="{{ $user->full_name }}">
-                                        @else
-                                            <i class="ti-user"></i>
-                                        @endif
+                                        <i class="ti-user"></i>
                                     </div>
                                     <div class="user-details">
                                         <div class="user-name">{{ $user->full_name }}</div>
-                                        <div class="user-id">ID: {{ $user->user_id }}</div>
+                                        <div class="user-id">ID: {{ $user->id }}</div>
                                     </div>
                                 </div>
                             </td>
@@ -112,7 +114,12 @@
                                 </span>
                             </td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ \Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</td>
+                            <td>
+                                <span class="status-badge {{ $user->status ? 'active' : 'inactive' }}">
+                                    {{ $user->status ? 'Active' : 'Inactive' }}
+                                </span>
+                            </td>
+                            <td>{{ $user->created_at->format('M d, Y') }}</td>
                             <td>
                                 <div class="table-actions">
                                     <button class="action-btn edit" title="Edit">
@@ -128,6 +135,11 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                {{ $users->links() }}
+            </div>
         </div>
     </div>
 </div>
@@ -136,6 +148,7 @@
 :root {
     --primary: #2563eb;
     --primary-light: #3b82f6;
+    --primary-lighter: #60a5fa;
     --text: #1f2937;
     --text-light: #6b7280;
     --bg: #f3f4f6;
@@ -146,59 +159,10 @@
     --danger: #ef4444;
 }
 
-/* Layout */
-.admin-container {
-    display: flex;
-    min-height: 100vh;
-    background: var(--bg);
-}
-
-.sidebar {
-    width: 280px;
-    background: var(--white);
-    border-right: 1px solid var(--border);
-    padding: 1.5rem;
-    position: fixed;
-    height: 100vh;
-    overflow-y: auto;
-}
-
-.main-content {
-    flex: 1;
-    margin-left: 280px;
-    padding: 2rem;
-}
-
-/* Header */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.header h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text);
-}
-
-.logout-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--danger);
-    color: var(--white);
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    text-decoration: none;
-}
-
 /* Users Section */
 .users-section {
     background: var(--white);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
 }
@@ -206,13 +170,16 @@
 /* Filters */
 .filters {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
+    gap: 1rem;
 }
 
 .search-box {
     position: relative;
     flex: 1;
+    max-width: 400px;
 }
 
 .search-box i {
@@ -229,6 +196,19 @@
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     font-size: 0.875rem;
+    color: var(--text);
+    transition: all 0.2s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 1rem;
 }
 
 .filter-select {
@@ -236,12 +216,35 @@
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     font-size: 0.875rem;
+    color: var(--text);
+    background: var(--white);
     min-width: 150px;
+}
+
+.add-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-user-btn:hover {
+    background: var(--primary-light);
 }
 
 /* Table */
 .table-container {
     overflow-x: auto;
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
 }
 
 .users-table {
@@ -262,6 +265,7 @@
 .users-table td {
     padding: 1rem;
     font-size: 0.875rem;
+    color: var(--text);
     border-bottom: 1px solid var(--border);
 }
 
@@ -279,17 +283,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    color: var(--text-light);
 }
 
-.user-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.user-details {
+    display: flex;
+    flex-direction: column;
 }
 
 .user-name {
     font-weight: 500;
+    color: var(--text);
 }
 
 .user-id {
@@ -319,6 +323,23 @@
     color: var(--warning);
 }
 
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.status-badge.inactive {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
 .table-actions {
     display: flex;
     gap: 0.5rem;
@@ -333,6 +354,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 .action-btn.edit {
@@ -340,125 +362,47 @@
     color: var(--primary);
 }
 
+.action-btn.edit:hover {
+    background: rgba(37, 99, 235, 0.2);
+}
+
 .action-btn.delete {
     background: rgba(239, 68, 68, 0.1);
     color: var(--danger);
 }
 
-/* Sidebar */
-.logo {
+.action-btn.delete:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 1.5rem;
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem 0 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
+    justify-content: center;
 }
 
-.logo i {
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.logo h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text);
-    margin: 0;
-}
-
-.nav-section {
-    margin-bottom: 1.5rem;
-}
-
-.nav-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-light);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-    padding-left: 0.5rem;
-}
-
-.sidebar nav a {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    text-decoration: none;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-    margin-bottom: 0.25rem;
-}
-
-.sidebar nav a i {
-    font-size: 1.25rem;
-    color: var(--text-light);
-}
-
-.sidebar nav a:hover {
-    background: var(--bg);
-}
-
-.sidebar nav a.active {
-    background: var(--primary);
-    color: var(--white);
-}
-
-.sidebar nav a.active i {
-    color: var(--white);
-}
-
-.sidebar nav a.logout {
-    color: var(--danger);
-}
-
-.sidebar nav a.logout i {
-    color: var(--danger);
-}
-
-.sidebar nav a.logout:hover {
-    background: rgba(239, 68, 68, 0.1);
-}
-
-/* Responsive Sidebar */
+/* Responsive */
 @media (max-width: 1024px) {
-    .sidebar {
-        width: 80px;
-        padding: 1rem 0.5rem;
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .logo h2,
-    .nav-label,
-    .sidebar nav span {
-        display: none;
+    .search-box {
+        max-width: none;
     }
 
-    .logo {
-        justify-content: center;
-        padding: 0 0 1rem;
-    }
-
-    .sidebar nav a {
-        justify-content: center;
-        padding: 0.75rem;
-    }
-
-    .main-content {
-        margin-left: 80px;
+    .filter-actions {
+        flex-wrap: wrap;
     }
 }
 
 @media (max-width: 768px) {
-    .main-content {
-        padding: 1rem;
-    }
-
     .users-table th:nth-child(3),
-    .users-table td:nth-child(3) {
+    .users-table td:nth-child(3),
+    .users-table th:nth-child(4),
+    .users-table td:nth-child(4) {
         display: none;
     }
 }
