@@ -17,19 +17,9 @@
                         <a href="{{ route('profile.show', ['id' => auth()->id()]) }}" class="list-group-item list-group-item-action">
                             <i class="ti-user mr-2"></i> Profile
                         </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title mb-4">Account Balance</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="ti-wallet text-primary mr-2" style="font-size: 24px;"></i>
-                        <div>
-                            <h4 class="mb-0">${{ number_format($userBankCost, 2) }}</h4>
-                            <small class="text-muted">Available Balance</small>
-                        </div>
+                        <a href="{{ url('logout') }}" class="list-group-item list-group-item-action text-danger">
+                            <i class="ti-power-off mr-2"></i> Logout
+                        </a>
                     </div>
                 </div>
             </div>

@@ -37,19 +37,6 @@
                                 </div>
                                 <hr>
                                 <div class="row mb-3">
-                                    <div class="col-sm-4 fw-bold">Your Balance:</div>
-                                    <div class="col-sm-8 text-info font-weight-bold">
-                                        <h3>{{ $userBankCost }}$</h3>
-                                        <hr>
-                                        <a href="{{ url('profile/withdraw/' . $user->id) }}">
-                                            <img class="img-fluid px-2" style="width: 50px;"
-                                                src="/assets/Icons/Withdraw.png" alt="Withdraw Icon">
-                                            <span>Withdraw / Deposit</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row mb-3">
                                     <div class="col-sm-4 fw-bold">Enroll Now:</div>
                                     <div class="col-sm-8">
                                         <a href="{{ route('profile.enrolls', ['id' => auth()->id()]) }}"
@@ -59,9 +46,15 @@
                                             <span>x{{ $enrollments }}</span>
                                         </a>
                                     </div>
-
                                 </div>
-
+                                <hr>
+                                <div class="row mb-3">
+                                    <div class="col-sm-12">
+                                        <a href="{{ url('logout') }}" class="btn btn-danger">
+                                            <i class="ti-power-off mr-2"></i> Logout
+                                        </a>
+                                    </div>
+                                </div>
 
                                 <ul class="list-unstyled d-flex mb-0">
                                     <li class="me-3">

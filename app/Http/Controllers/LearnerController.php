@@ -15,29 +15,31 @@ class LearnerController extends Controller
 {
     public function dashboard()
     {
+        // Check if the user is authenticated
         if (!auth()->check()) {
             return redirect()->route('login')->with('error', 'Please login to access this page.');
         }
 
+        // Get the authenticated user
         $user = auth()->user();
-        $userRole = $user->role;
-        $userId = $user->user_id;
 
-        // Get enrolled courses
-        $enrolledCourses = EnrollModel::where('user_id', $userId)
-            ->with(['course' => function($query) {
-                $query->with('lessons');
-            }])
+        // Get the user's role and ID
+        $userRole = $user->role;
+        $user_id = $user->user_id;
+
+        // Fetch enrolled courses with their progress
+        $enrolledCourses = EnrollModel::with('course')
+            ->where('user_id', $user_id)
             ->get();
 
-        // Get course progress
+        // Calculate progress for each course
         $courseProgress = [];
         foreach ($enrolledCourses as $enrollment) {
             $course = $enrollment->course;
-            $totalLessons = $course->lessons->count();
-            $completedLessons = $course->lessons->where('completed', true)->count();
-            $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
+            $totalLessons = LessonsModel::where('course_id', $course->course_id)->count();
+            $completedLessons = 0; // You can implement this based on your completion tracking logic
 
+            $progress = $totalLessons > 0 ? ($completedLessons / $totalLessons) * 100 : 0;
             $courseProgress[$course->course_id] = [
                 'progress' => $progress,
                 'total_lessons' => $totalLessons,
@@ -45,16 +47,12 @@ class LearnerController extends Controller
             ];
         }
 
-        // Get user's bank balance
-        $userBankCost = $this->getUserBankCost($userId);
-
         // Get categories for navigation
         $categories = CategoryModel::all();
 
         return view('learner.dashboard', compact(
             'enrolledCourses',
             'courseProgress',
-            'userBankCost',
             'categories',
             'userRole'
         ));
