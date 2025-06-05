@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Top 1 E-learning</title>
+    <title>CyberWise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/assets/images/icon/favicon.ico">
 
@@ -40,6 +40,10 @@
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
+    <style>
+        html, body { margin: 0; padding: 0; background: #f8f9fa; }
+    </style>
+
 </head>
 
 <body>
@@ -50,100 +54,11 @@
     <!-- preloader area end -->
     <!-- page container area start -->
     <div class="page-container">
-        <!-- sidebar menu area start -->
-        <div class="sidebar-menu">
-            <div class="sidebar-header p-3 bg-dark d-flex justify-content-center align-items-center">
-                <div class="logo d-flex align-items-center">
-                    <a href="{{ url('admin/dashboard') }}" class="d-flex align-items-center text-decoration-none">
-                        <img src="/assets/images/icon/logo007_64.ico" alt="Website Logo" class="img-fluid mr-2"
-                            style="width: 64px; height: 64px;">
-                    </a>
-                </div>
-            </div>
-            <div class="main-menu">
-                <div class="menu-inner">
-                    <nav>
-                        <ul class="metismenu" id="menu">
-                            <li>
-                                <a href="{{ url('admin/dashboard') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Home.png"
-                                        alt="Home">
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('admin/users') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/User.png"
-                                        alt="Users">
-                                    <span>Users</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('admin/category') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Category.png"
-                                        alt="Category">
-                                    <span>Category</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('admin/courses') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Courses.png"
-                                        alt="Courses">
-                                    <span>Courses</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('admin/lessons') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Lessons.png"
-                                        alt="Lessons">
-                                    <span>Lessons</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-
-                </div>
-            </div>
-        </div>
-        <div class="page-title-area">
-            <div class="nav-btn pull-left" style="margin: 22px 0px 0px 0">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-                    <div class="breadcrumbs-area clearfix">
-                        <h4 class="page-title pull-left">Dashboard</h4>
-                        <ul class="breadcrumbs pull-left">
-                            <li><a href="index.html">Home</a></li>
-                            <li><span>Dashboard</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 clearfix">
-                    <div class="user-profile pull-right">
-
-                        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Admin<i
-                                class="fa fa-angle-down"></i></h4>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Message</a>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="{{ url('logout') }}">Log Out</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         @include('_message')
-
         @yield('content')
-
-        @include('admin.layout.footer')
+        @include('static.components.footer')
         @include('admin.script.script_table')
         @include('admin.style.style')
-
-
     </div>
 
     <!-- jQuery -->

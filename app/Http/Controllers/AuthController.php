@@ -98,59 +98,64 @@ class AuthController extends Controller
 
     public function forgotpassword()
     {
-        $categories = CategoryModel::all();
-        return view('auth.forgotpassword', compact('categories'));
+        return view('auth.forgot-password');
     }
     public function postForgotPassword(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|email',
+            ]);
 
-        $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->first();
 
-        if ($user) {
-            // Generate a new remember_token
-            $user->update(['remember_token' => Str::random(30)]);
+            if ($user) {
+                // Generate a new remember_token
+                $user->update(['remember_token' => Str::random(30)]);
 
-            // Send reset password email
-            Mail::to($user->email)->send(new ForgotPasswordMail($user));
+                // Send reset password email
+                Mail::to($user->email)->send(new ForgotPasswordMail($user));
 
-            return redirect()->back()->with('success', 'Please check your email to reset your password.');
-        } else {
-            return redirect()->back()->with('error', 'Email not found.');
+                return redirect()->back()->with('success', 'Please check your email to reset your password.');
+            } else {
+                return redirect()->back()->with('error', 'Email not found.');
+            }
+        } catch (\Exception $e) {
+            \Log::error('Password reset error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred. Please try again.');
         }
     }
     public function reset($token)
     {
-        $categories = CategoryModel::all();
         $user = User::where('remember_token', $token)->first();
 
         if ($user) {
-            return view('teacher.auth.reset', compact('user', 'categories'));
+            return view('auth.reset-password', compact('token'));
         } else {
-            abort(404);
+            return redirect('login')->with('error', 'Invalid or expired password reset link.');
         }
     }
 
     public function PostReset($token, Request $request)
     {
         $request->validate([
+            'email' => 'required|email',
             'password' => 'required|min:6|confirmed',
         ]);
 
-        // Retrieve user by remember token
-        $user = User::where('remember_token', $token)->first();
+        $user = User::where('email', $request->email)
+                   ->where('remember_token', $token)
+                   ->first();
 
         if (!$user) {
-            return redirect()->back()->with('error', 'Invalid token or user not found');
+            return redirect()->back()->with('error', 'Invalid token or email address.');
         }
 
         $user->password = Hash::make($request->password);
         $user->remember_token = Str::random(30);
         $user->save();
 
-        return redirect(url('login'))->with('success', 'Password reset successfully');
+        return redirect('login')->with('success', 'Your password has been reset successfully.');
     }
 
 

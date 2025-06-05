@@ -2,14 +2,14 @@
 @section('content')
 <style>
     body { background: #f8f9fa; font-family: 'Poppins', sans-serif; }
-    .cyberwise-login-container {
+    .cyberwise-forgot-container {
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         background: #f8f9fa;
     }
-    .cyberwise-login-card {
+    .cyberwise-forgot-card {
         background: #fff;
         border-radius: 1.2rem;
         box-shadow: 0 4px 32px rgba(37,99,235,0.08);
@@ -18,42 +18,42 @@
         width: 100%;
         margin: 1rem 0;
     }
-    .cyberwise-login-card .logo {
+    .cyberwise-forgot-card .logo {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.7rem;
         margin-bottom: 1rem;
     }
-    .cyberwise-login-card .logo i {
+    .cyberwise-forgot-card .logo i {
         font-size: 1.7rem;
         color: #2563eb;
     }
-    .cyberwise-login-card .logo span {
+    .cyberwise-forgot-card .logo span {
         font-size: 1.15rem;
         font-weight: 700;
         color: #2563eb;
         letter-spacing: 1px;
     }
-    .cyberwise-login-card h4 {
+    .cyberwise-forgot-card h4 {
         font-weight: 700;
         color: #222;
         text-align: center;
         margin-bottom: 0.3rem;
         font-size: 1.1rem;
     }
-    .cyberwise-login-card p {
+    .cyberwise-forgot-card p {
         color: #6b7280;
         text-align: center;
         margin-bottom: 1.2rem;
         font-size: 0.97rem;
     }
-    .cyberwise-login-card .form-label {
+    .cyberwise-forgot-card .form-label {
         font-weight: 500;
         color: #222;
         font-size: 0.97rem;
     }
-    .cyberwise-login-card .form-control {
+    .cyberwise-forgot-card .form-control {
         border-radius: 0.5rem;
         border: 1px solid #e5e7eb;
         padding: 0.55rem 0.9rem;
@@ -62,24 +62,12 @@
         background: #f8fafc;
         transition: border 0.2s;
     }
-    .cyberwise-login-card .form-control:focus {
+    .cyberwise-forgot-card .form-control:focus {
         border-color: #2563eb;
         box-shadow: 0 0 0 2px rgba(37,99,235,0.08);
         background: #fff;
     }
-    .cyberwise-login-card .form-check-label {
-        font-size: 0.93rem;
-        color: #444;
-    }
-    .cyberwise-login-card .forgot-link {
-        font-size: 0.93rem;
-        color: #2563eb;
-        text-decoration: none;
-    }
-    .cyberwise-login-card .forgot-link:hover {
-        text-decoration: underline;
-    }
-    .cyberwise-login-card .btn-primary {
+    .cyberwise-forgot-card .btn-primary {
         width: 100%;
         padding: 0.55rem;
         border-radius: 0.5rem;
@@ -89,53 +77,75 @@
         border: none;
         transition: background 0.2s;
     }
-    .cyberwise-login-card .btn-primary:hover {
+    .cyberwise-forgot-card .btn-primary:hover {
         background: #1746a0;
     }
-    .cyberwise-login-card .form-footer {
+    .cyberwise-forgot-card .form-footer {
         margin-top: 1.2rem;
         text-align: center;
         color: #6b7280;
         font-size: 0.95rem;
     }
-    .cyberwise-login-card .form-footer a {
+    .cyberwise-forgot-card .form-footer a {
         color: #2563eb;
         text-decoration: none;
         font-weight: 500;
     }
-    .cyberwise-login-card .form-footer a:hover {
+    .cyberwise-forgot-card .form-footer a:hover {
         text-decoration: underline;
     }
+    .alert {
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+    .alert-success {
+        background-color: #dcfce7;
+        border: 1px solid #86efac;
+        color: #166534;
+    }
+    .alert-danger {
+        background-color: #fee2e2;
+        border: 1px solid #fca5a5;
+        color: #991b1b;
+    }
 </style>
-<div class="cyberwise-login-container">
-    <div class="cyberwise-login-card">
+
+<div class="cyberwise-forgot-container">
+    <div class="cyberwise-forgot-card">
         <div class="logo">
             <i class="fas fa-shield-alt"></i>
             <!-- <span>CyberWise</span> -->
         </div>
-        <h4>Log In</h4>
+        <h4>Forgot Password</h4>
+        <p>Enter your email address and we'll send you a link to reset your password.</p>
 
-        <form method="POST" action="{{ route('login') }}">
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ url('forgot-password') }}">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus>
+                @error('email')
+                    <div class="text-danger" style="font-size: 0.85rem; margin-top: 0.25rem;">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                    <label class="form-check-label" for="remember">Remember me</label>
-                </div>
-                <a href="{{ route('password.request') }}" class="forgot-link">Forgot password?</a>
-            </div>
-            <button type="submit" class="btn btn-primary">Log In</button>
+            <button type="submit" class="btn btn-primary">Send Reset Link</button>
         </form>
         <div class="form-footer">
-            Don't have an account? <a href="{{ url('signup') }}">Sign up</a>
+            Remember your password? <a href="{{ url('login') }}">Log In</a>
         </div>
     </div>
 </div>

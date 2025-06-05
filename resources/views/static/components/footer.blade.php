@@ -7,10 +7,10 @@
                         <a href="{{ url('/') }}" class="text-2xl font-bold">Cyber<span>Wise</span></a>
                     </div>
                     <div class="footer-links">
-                        <a href="{{ url('/') }}">Accueil</a>
-                        <a href="{{ url('/signup') }}">Inscription</a>
-                        <a href="{{ url('/login') }}">Connexion</a>
-                        <a href="{{ url('/forgot-password') }}">Mot de passe oublié</a>
+                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ url('/courses') }}">Courses</a>
+                        <a href="{{ url('/about') }}">About Us</a>
+                        <a href="{{ url('/contact') }}">Contact</a>
                     </div>
                     <div class="footer-social">
                         <a href="#" class="social-link"><i class="fa fa-facebook"></i></a>
@@ -19,7 +19,7 @@
                         <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
                     </div>
                     <div class="footer-copyright">
-                        <p>© {{ date('Y') }} CyberWise. Tous droits réservés.</p>
+                        <p>© {{ date('Y') }} CyberWise. All rights reserved.</p>
                     </div>
                 </div>
             </div>
