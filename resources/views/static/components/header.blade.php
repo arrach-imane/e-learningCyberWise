@@ -25,13 +25,13 @@
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
     <style>
         :root {
-            --primary-color: #1e40af;
-            --primary-hover: #1e3a8a;
-            --accent-color: #3b82f6;
-            --text-color: #1e3a8a;
-            --text-light: #64748b;
-            --bg-color: #ffffff;
-            --border-color: #e2e8f0;
+            --primary-color: #2563eb;
+            --primary-hover: #1746a0;
+            --accent-color: #10b981;
+            --text-color: #222;
+            --text-light: #6b7280;
+            --bg-color: #fff;
+            --border-color: #e5e7eb;
         }
 
         @keyframes gradient {
@@ -47,9 +47,9 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             color: var(--text-color);
-            background-color: #f8fafc;
+            background-color: #f8f9fa;
         }
 
         .mainheader-area {
@@ -59,7 +59,7 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(255,255,255,0.98);
             padding: 0.5rem 0;
         }
 
@@ -77,7 +77,7 @@
         }
 
         .logo a:hover {
-            background: rgba(30, 64, 175, 0.05);
+            background: rgba(37, 99, 235, 0.05);
             transform: translateY(-2px);
         }
 
@@ -162,7 +162,7 @@
         }
 
         .user-profile:hover {
-            background: rgba(30, 64, 175, 0.05);
+            background: rgba(37, 99, 235, 0.05);
         }
 
         .user-profile .avatar {
@@ -203,7 +203,7 @@
             background: var(--primary-hover);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 6px -1px rgba(30, 64, 175, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
         }
 
         .dropdown-menu {
@@ -214,7 +214,8 @@
             min-width: 280px;
             max-height: 400px;
             overflow-y: auto;
-            background: white;
+            background: #fff;
+            color: var(--text-color);
         }
 
         .dropdown-item {
@@ -226,6 +227,7 @@
             line-height: 1.5;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 0.5rem;
+            background: transparent;
         }
 
         .dropdown-item:last-child {
@@ -234,7 +236,7 @@
         }
 
         .dropdown-item:hover {
-            background: rgba(30, 64, 175, 0.05);
+            background: rgba(37, 99, 235, 0.05);
             color: var(--primary-color);
         }
 
@@ -253,11 +255,11 @@
         }
 
         .dropdown-item.unread {
-            background: rgba(30, 64, 175, 0.05);
+            background: rgba(37, 99, 235, 0.05);
         }
 
         .dropdown-item.unread:hover {
-            background: rgba(30, 64, 175, 0.08);
+            background: rgba(37, 99, 235, 0.08);
         }
 
         .dropdown-item.unread .message {
@@ -293,7 +295,7 @@
             top: 100%;
             right: 0;
             width: 280px;
-            background: white;
+            background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             padding: 0.75rem;
@@ -301,6 +303,7 @@
             z-index: 1000;
             max-height: 320px;
             overflow-y: auto;
+            color: var(--text-color);
         }
 
         .notification-item {

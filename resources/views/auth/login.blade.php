@@ -1,7 +1,7 @@
 @extends('static.components.header')
 @section('content')
 <style>
-    body { background: #f8f9fa; font-family: 'Poppins', sans-serif; }
+    body { background: #f8f9fa; font-family: 'Poppins', sans-serif; color: #222; }
     .cyberwise-login-container {
         min-height: 100vh;
         display: flex;
@@ -17,6 +17,7 @@
         max-width: 380px;
         width: 100%;
         margin: 1rem 0;
+        color: #222;
     }
     .cyberwise-login-card .logo {
         display: flex;
@@ -60,12 +61,14 @@
         font-size: 0.97rem;
         margin-bottom: 0.9rem;
         background: #f8fafc;
+        color: #222;
         transition: border 0.2s;
     }
     .cyberwise-login-card .form-control:focus {
         border-color: #2563eb;
         box-shadow: 0 0 0 2px rgba(37,99,235,0.08);
         background: #fff;
+        color: #222;
     }
     .cyberwise-login-card .form-check-label {
         font-size: 0.93rem;
@@ -87,6 +90,7 @@
         font-size: 1rem;
         background: #2563eb;
         border: none;
+        color: #fff;
         transition: background 0.2s;
     }
     .cyberwise-login-card .btn-primary:hover {

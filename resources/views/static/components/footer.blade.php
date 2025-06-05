@@ -27,10 +27,10 @@
     </div>
     <style>
         .footer-area {
-            background: var(--bg-color);
+            background: #fff;
             padding: 3rem 0;
             margin-top: 4rem;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid #e5e7eb;
         }
 
         .footer-content {
@@ -44,13 +44,13 @@
         .footer-logo a {
             font-size: 28px;
             font-weight: 800;
-            color: var(--primary-color);
+            color: #2563eb;
             text-decoration: none;
             letter-spacing: -1px;
         }
 
         .footer-logo a span {
-            color: var(--accent-color);
+            color: #10b981;
         }
 
         .footer-links {
@@ -62,7 +62,7 @@
         }
 
         .footer-links a {
-            color: var(--text-color);
+            color: #222;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -70,7 +70,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--primary-color);
+            color: #2563eb;
             transform: translateY(-2px);
         }
 
@@ -82,7 +82,7 @@
         }
 
         .social-link {
-            color: var(--text-light);
+            color: #6b7280;
             font-size: 1.25rem;
             transition: all 0.3s ease;
             width: 40px;
@@ -95,13 +95,13 @@
         }
 
         .social-link:hover {
-            color: var(--primary-color);
-            background: rgba(30, 64, 175, 0.05);
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.05);
             transform: translateY(-2px);
         }
 
         .footer-copyright {
-            color: var(--text-light);
+            color: #6b7280;
             font-size: 0.95rem;
         }
 

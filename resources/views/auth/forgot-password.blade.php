@@ -1,7 +1,7 @@
 @extends('static.components.header')
 @section('content')
 <style>
-    body { background: #f8f9fa; font-family: 'Poppins', sans-serif; }
+    body { background: #f8f9fa; font-family: 'Poppins', sans-serif; color: #222; }
     .cyberwise-forgot-container {
         min-height: 100vh;
         display: flex;
@@ -17,6 +17,7 @@
         max-width: 380px;
         width: 100%;
         margin: 1rem 0;
+        color: #222;
     }
     .cyberwise-forgot-card .logo {
         display: flex;
@@ -60,12 +61,14 @@
         font-size: 0.97rem;
         margin-bottom: 0.9rem;
         background: #f8fafc;
+        color: #222;
         transition: border 0.2s;
     }
     .cyberwise-forgot-card .form-control:focus {
         border-color: #2563eb;
         box-shadow: 0 0 0 2px rgba(37,99,235,0.08);
         background: #fff;
+        color: #222;
     }
     .cyberwise-forgot-card .btn-primary {
         width: 100%;
@@ -75,6 +78,7 @@
         font-size: 1rem;
         background: #2563eb;
         border: none;
+        color: #fff;
         transition: background 0.2s;
     }
     .cyberwise-forgot-card .btn-primary:hover {
@@ -102,12 +106,12 @@
     }
     .alert-success {
         background-color: #dcfce7;
-        border: 1px solid #86efac;
+        border: 1px solid #10b981;
         color: #166534;
     }
     .alert-danger {
         background-color: #fee2e2;
-        border: 1px solid #fca5a5;
+        border: 1px solid #ef4444;
         color: #991b1b;
     }
 </style>

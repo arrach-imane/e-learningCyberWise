@@ -1,7 +1,7 @@
 @extends('static.components.header')
 @section('content')
     <style>
-        body { background: #f8f9fa; font-family: 'Poppins', sans-serif; }
+        body { background: #f8f9fa; font-family: 'Poppins', sans-serif; color: #222; }
         .cyberwise-signup-container {
             min-height: 100vh;
             display: flex;
@@ -14,9 +14,10 @@
             border-radius: 1.2rem;
             box-shadow: 0 4px 32px rgba(37,99,235,0.08);
             padding: 1.5rem 1.5rem 1.2rem 1.5rem;
-            max-width: 380px;
+            max-width: 420px;
             width: 100%;
             margin: 1rem 0;
+            color: #222;
         }
         .cyberwise-signup-card .logo {
             display: flex;
@@ -60,12 +61,14 @@
             font-size: 0.97rem;
             margin-bottom: 0.9rem;
             background: #f8fafc;
+            color: #222;
             transition: border 0.2s;
         }
         .cyberwise-signup-card .form-control:focus {
             border-color: #2563eb;
             box-shadow: 0 0 0 2px rgba(37,99,235,0.08);
             background: #fff;
+            color: #222;
         }
         .cyberwise-signup-card .btn-primary {
             width: 100%;
@@ -75,6 +78,7 @@
             font-size: 1rem;
             background: #2563eb;
             border: none;
+            color: #fff;
             transition: background 0.2s;
         }
         .cyberwise-signup-card .btn-primary:hover {
