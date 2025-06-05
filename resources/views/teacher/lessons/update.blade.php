@@ -60,6 +60,10 @@
                                 Looks good!
                             </div>
                         </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="lessonContent">Lesson Content</label>
+                            <textarea name="lesson_content" class="form-control" id="lessonContent" rows="6" placeholder="Enter lesson text here...">{{ old('lesson_content', $lesson->lesson_content ?? '') }}</textarea>
+                        </div>
                     </div>
                     <a href="{{ url('teacher/lessons') }}"><button type="button"
                                     class="btn btn-outline-danger mb-3">Cancel</button></a>

@@ -8,7 +8,7 @@
 
             <div class="card mt-2">
                 <div class="card-body">
-                    <h5 class="d-inline-block mb-3 mr-auto">Competition</h5>
+                    <h5 class="d-inline-block mb-3 mr-auto">Progress</h5>
                     <h5 class="float-right mb-3">Lessons Count {{ $totalLessons }}</h5>
                     <div class="progress_area">
                         <div class="progress" style="height: 28px;">
@@ -55,6 +55,12 @@
                                     <div class="card-body">
                                         <div class="course-video" data-video="{{ $lesson->lesson_video }}"
                                             id="videoPlayer{{ $index }}"></div>
+                                        @if(!empty($lesson->lesson_content))
+                                            <div class="lesson-content mt-3">
+                                                <h6>Lesson Content</h6>
+                                                <div style="white-space: pre-line;">{!! nl2br(e($lesson->lesson_content)) !!}</div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

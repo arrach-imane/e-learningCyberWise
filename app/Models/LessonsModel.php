@@ -17,7 +17,7 @@ class LessonsModel extends Model
 
     // Allow mass assignment for these fields
     protected $fillable = [
-        'course_id', 'lesson_title', 'lesson_duration', 'lesson_video'
+        'course_id', 'lesson_title', 'lesson_duration', 'lesson_video', 'lesson_content'
     ];
 
     // Define relationships if any
