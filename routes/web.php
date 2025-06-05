@@ -11,6 +11,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LearnerController;
+use App\Http\Controllers\CheckoutController;
 
 //Normal
 Route::get('/', [NormalController::class, 'index']);
@@ -103,4 +104,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::put('admin/lessons/update/{id}', [LessonsController::class, 'lessons_update'])->name('admin.lessons.update');
     Route::get('admin/lessons/detail/{id}', [LessonsController::class, 'show_lessons_detail'])->name('admin.lessons.detail');
     Route::delete('admin/lessons/delete', [LessonsController::class, 'lessons_delete'])->name('admin.lessons.delete');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout/{course}', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::post('/checkout/{course}', [CheckoutController::class, 'process'])->name('checkout.process');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 });

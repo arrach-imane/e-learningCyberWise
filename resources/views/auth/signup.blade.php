@@ -109,8 +109,8 @@
             <form method="POST" action="{{ url('signup') }}">
                 @csrf
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required autofocus>
+                    <label for="full_name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required autofocus>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>

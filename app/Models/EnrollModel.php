@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CoursesModel;
 
 class EnrollModel extends Model
 {
@@ -19,5 +20,10 @@ class EnrollModel extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(CoursesModel::class, 'course_id');
     }
 }

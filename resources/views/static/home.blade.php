@@ -112,11 +112,7 @@
                             </div>
                             <div class="course-content">
                                 <h3 class="course-title">
-<<<<<<< HEAD
-                                    <a href="{{ url('/courses', ['course_id' => $course->course_id]) }}" style="color: #14213d;">
-=======
                                     <a href="{{ url('courses/' . $course->course_id) }}" style="color: #222;">
->>>>>>> 780d4bbf987905e58d8a42281562dc4ec53c7052
                                         {{ Str::limit($course->course_title, 50) }}
                                     </a>
                                 </h3>

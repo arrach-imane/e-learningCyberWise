@@ -67,8 +67,7 @@
                             <a href="/login"><button type="button"
                                     class="btn btn-flat btn-outline-danger btn-block mb-3">Log-In</button></a>
                         @else
-                            <button type="submit" class="btn btn-flat btn-outline-secondary btn-block mb-3"
-                                data-toggle="modal" data-target="#exampleModalCenter">Buy Now</button>
+                            <a href="{{ route('checkout.show', $course->course_id) }}" class="btn btn-flat btn-primary btn-block mb-3">Buy Now with Card</a>
                         @endif
                     </div>
                 </div>
@@ -91,8 +90,8 @@
                         </div>
                     </div>
                 </div>
-                
-            
+
+
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2 class="card-title">Requirements</h2>
@@ -108,64 +107,6 @@
                             <li class="list-group-item">{{ $course->course_description }}</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Do you want to purchase this course?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p><strong>Course Price:</strong></p>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>{{ number_format($totalDiscountPrice, 2) }}$</h3>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p><strong>Your Current Balance:</strong></p>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>{{ number_format($userBankCost, 2) }}$</h3>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p><strong>Total Cost After Purchase:</strong></p>
-                        </div>
-                        <div class="col-md-8">
-                            @if ($totalDiscountPrice > $userBankCost)
-                                <p style="color:crimson;">You don't have enough money.</p>
-                            @else
-                                <h3>{{ number_format($userBankCost - $totalDiscountPrice, 2) }}$
-                                </h3>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
-
-                    <form action="{{ url('buy-course') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="course_id" value="{{ $course->course_id }}">
-                        <input type="hidden" name="total_discount_price" value="{{ $totalDiscountPrice }}">
-                        <button type="submit" class="btn btn-outline-primary">Buy Now</button>
-                    </form>
-
                 </div>
             </div>
         </div>
