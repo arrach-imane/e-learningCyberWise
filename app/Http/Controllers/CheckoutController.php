@@ -44,13 +44,7 @@ class CheckoutController extends Controller
 
     public function success(Request $request)
     {
-        // Here you can enroll the user in the course using $request->course_id
-        // and $request->user()
-        // Example:
-        // EnrollModel::firstOrCreate([
-        //     'user_id' => $request->user()->user_id,
-        //     'course_id' => $request->course_id,
-        // ]);
+
         return view('checkout_success');
     }
 
