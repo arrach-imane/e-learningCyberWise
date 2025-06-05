@@ -41,31 +41,6 @@
                                     Looks good!
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="validationCustom02">Price</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                        <span class="input-group-text">0.00</span>
-                                    </div>
-                                    <input name="course_price" value="{{ old('course_price') }}" type="number"
-                                        class="form-control" id="validationCustom02" placeholder="Price" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <label for="validationCustom02">Discount</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">%</span>
-                                        <span class="input-group-text">000</span>
-                                    </div>
-                                    <input name="course_discount" value="{{ old('course_discount') }}" type="number"
-                                        class="form-control" id="validationCustom02" placeholder="Discount" required>
-                                </div>
-                            </div>
                             <div class="col-md-6 mb-3">
                                 <label for="youtubeUrl">YouTube Video URL</label>
                                 <div class="input-group">

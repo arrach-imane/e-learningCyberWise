@@ -3,9 +3,9 @@
     <!-- Hero Section -->
     <header class="hero text-center">
         <div class="container">
-            <h1>Bienvenue sur votre espace enseignant</h1>
+            <h1>Welcome to your Teacher Dashboard</h1>
             <p class="lead">
-                Retrouvez ici vos statistiques de cours et de leçons, ainsi que les outils pour gérer vos contenus pédagogiques.
+                Here you can find your course and lesson statistics, as well as tools to manage your educational content.
             </p>
         </div>
     </header>
@@ -15,9 +15,9 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body text-center">
                         <div class="mb-2">
-                            <i class="ti-bookmark-alt" style="font-size:2rem;color:#0d6efd;"></i>
+                            <i class="ti-bookmark-alt" style="font-size:2rem;color: var(--primary-color);"></i>
                         </div>
-                        <h5 class="card-title">Total des cours</h5>
+                        <h5 class="card-title">Total Courses</h5>
                         <h2 class="fw-bold">{{ $totalcourses }}</h2>
                     </div>
                 </div>
@@ -26,9 +26,9 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body text-center">
                         <div class="mb-2">
-                            <i class="ti-wallet" style="font-size:2rem;color:#0d6efd;"></i>
+                            <i class="ti-wallet" style="font-size:2rem;color: var(--primary-color);"></i>
                         </div>
-                        <h5 class="card-title">Total des leçons</h5>
+                        <h5 class="card-title">Total Lessons</h5>
                         <h2 class="fw-bold">{{ $totallessons }}</h2>
                     </div>
                 </div>
@@ -45,15 +45,13 @@
         .hero h1 {
             font-weight: 700;
             font-size: 2.5rem;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         .hero .lead {
             font-size: 1.15rem;
             margin-bottom: 1.5rem;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.15);
         }
         .card-title {
-            color: #0d6efd;
+            color: var(--primary-color);
             font-weight: 600;
         }
         .card {
