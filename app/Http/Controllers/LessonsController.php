@@ -119,6 +119,7 @@ class LessonsController extends Controller
             'lesson_duration' => 'required|numeric|min:0',
             'lesson_video' => 'required|url|unique:tbl_lessons,lesson_video',
             'course_id' => 'required|exists:tbl_courses,course_id',
+            'lesson_content' => 'nullable|string',
         ]);
 
         // If user is a teacher, associate the lesson with their user_id
@@ -197,6 +198,7 @@ class LessonsController extends Controller
                 'url',
                 Rule::unique('tbl_lessons')->ignore($lesson->getKey(), $lesson->getKeyName()),
             ],
+            'lesson_content' => 'nullable|string',
         ]);
 
         // Update the lesson with validated data
