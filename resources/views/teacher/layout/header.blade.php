@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Top 1 </title>
+    <title>CyberWise</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="/assets/images/icon/favicon.ico">
 
@@ -40,6 +40,10 @@
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
+    <style>
+        html, body { margin: 0; padding: 0; background: #f8f9fa; }
+    </style>
+
 </head>
 
 <body>
@@ -50,74 +54,8 @@
     <!-- preloader area end -->
     <!-- page container area start -->
     <div class="page-container">
-        <!-- sidebar menu area start -->
-        <div class="sidebar-menu" style="background: #fff;">
-            <div class="main-menu">
-                <div class="menu-inner">
-                    <nav>
-                        <ul class="metismenu" id="menu">
-                            <li>
-                                <a href="{{ url('teacher/dashboard') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Home.png"
-                                        alt="Home">
-                                    <span>Home</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('teacher/courses') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Courses.png"
-                                        alt="Courses">
-                                    <span>Courses</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url('teacher/lessons') }}">
-                                    <img class="img-fluid px-2" style="width: 50px;" src="/assets/Icons/Lessons.png"
-                                        alt="Lessons">
-                                    <span>Lessons</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-        <div class="page-title-area">
-            <div class="nav-btn pull-left" style="margin: 22px 0px 0px 0">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-sm-6">
-                    <div class="breadcrumbs-area clearfix">
-                        <h4 class="page-title pull-left">Dashboard</h4>
-                        <ul class="breadcrumbs pull-left">
-                            <li><a href="index.html">Home</a></li>
-                            <li><span>Dashboard</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-6 clearfix">
-                    <div class="user-profile pull-right">
-                        <img class="avatar user-thumb"
-                            src="{{ Auth::user()->user_photo ? asset('upload/' . basename(Auth::user()->user_photo)) : 'https://img.icons8.com/bubbles/100/000000/user.png' }}"
-                            alt="avatar">
-                        <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->full_name }}<i
-                                class="fa fa-angle-down"></i></h4>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Message</a>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="{{ url('logout') }}">Log Out</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         @include('_message')
-
         @yield('content')
-
         @include('static.components.footer')
         @include('admin.script.script_table')
         @include('admin.style.style')
@@ -191,27 +129,6 @@
     <!-- Custom Scripts -->
     <script src="/assets/js/scripts.js"></script>
 
-    <style>
-    .logo a {
-        font-size: 36px;
-        font-weight: 800;
-        color: var(--primary-color, #0d6efd);
-        text-decoration: none;
-        letter-spacing: -1px;
-        position: relative;
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-    }
-    .logo a:hover {
-        background: rgba(30, 64, 175, 0.05);
-        transform: translateY(-2px);
-    }
-    .logo a span {
-        color: var(--accent-color, #f7cb3f);
-    }
-    </style>
 </body>
 
 </html>

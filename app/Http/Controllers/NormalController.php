@@ -70,8 +70,8 @@ class NormalController extends Controller
         $lessons = LessonsModel::where('course_id', $id)->get();
         $users = User::where('user_id', $id)->get();
         $categories = CategoryModel::all();
-        $userEnrolled = EnrollModel::where('user_id', auth()->id())->where('course_id', $id)->exists();
-        $userBankCost = $this->getUserBankCost(auth()->id());
+        $userEnrolled = auth()->check() ? EnrollModel::where('user_id', auth()->id())->where('course_id', $id)->exists() : false;
+        $userBankCost = auth()->check() ? $this->getUserBankCost(auth()->id()) : null;
 
         return view('static.course', compact('categories', 'course', 'lessons', 'userEnrolled', 'userBankCost', 'userRole'));
     }

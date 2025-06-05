@@ -1,5 +1,42 @@
 @extends('teacher.layout.header')
 @section('content')
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ url('teacher/dashboard') }}">
+            <i class="fa-solid fa-shield-halved text-primary" style="font-size:1.7rem;"></i>
+            <span style="font-size:1.4rem; letter-spacing:1px; color:#2563eb; font-family:sans-serif;">Cyber<span style="color:#111;">Wise</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#teacherNavbar" aria-controls="teacherNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="teacherNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link{{ request()->is('teacher/dashboard') ? ' active' : '' }}" href="{{ url('teacher/dashboard') }}">
+                        <i class="fa-solid fa-house-laptop me-1"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{{ request()->is('teacher/courses*') ? ' active' : '' }}" href="{{ url('teacher/courses') }}">
+                        <i class="fa-solid fa-graduation-cap me-1"></i> Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{{ request()->is('teacher/lessons*') ? ' active' : '' }}" href="{{ url('teacher/lessons') }}">
+                        <i class="fa-regular fa-lightbulb me-1"></i> Lessons
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="{{ url('logout') }}">
+                        <i class="fa-solid fa-right-from-bracket me-1"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
     <div class="main-content-inner">
         <div class="row">
             <div class="col-12 mt-4">
@@ -30,9 +67,6 @@
                                                 <th width="0%">ID</th>
                                                 <th width="10%">Category</th>
                                                 <th width="10%">Title</th>
-                                                <th width="0%">Price</th>
-                                                <th width="0%">Discount</th>
-                                                <th width="5%">Total Discount</th>
                                                 <th width="0%">Visibility</th>
                                                 <th width="10%">Description / Requirements</th>
                                                 <th width="0%">Created_at</th>
@@ -46,12 +80,6 @@
                                                     <th scope="row">{{ $course->course_id }}</th>
                                                     <td>{{ $course->category_title }}</td>
                                                     <td>{{ $course->course_title }}</td>
-                                                    <td>{{ number_format($course->course_price, 2) }}$</td>
-                                                    <td>{{ $course->course_discount }}%</td>
-                                                    @php
-                                                        $totalDiscountPrice = $course->getDiscountedPrice();
-                                                    @endphp
-                                                    <td>{{ number_format($totalDiscountPrice, 2) }}$</td>
                                                     <td>
                                                         @if ($course->course_visibility == 'true')
                                                             <img class="img-fluid px-2" style="width: 50px;"

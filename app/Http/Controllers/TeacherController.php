@@ -53,6 +53,10 @@ class TeacherController extends Controller
         $totalcourses = $courses->count();
         $totallessons = $lessons->count();
 
+        // Calcul du nombre total d'utilisateurs ayant consulté les cours du teacher
+        $courseIds = $courses->pluck('course_id');
+        $totalCourseViews = \App\Models\EnrollModel::whereIn('course_id', $courseIds)->distinct('user_id')->count('user_id');
+
         // Fetch user bank cost using the method
         $userBankCost = $user->getUserBankCost(); // Ensure this call is correct and properly scoped
 
@@ -60,7 +64,7 @@ class TeacherController extends Controller
         if ($userRole == 'admin') {
             return view('admin.dashboard', compact('courses', 'lessons', 'totalcourses', 'totallessons'));
         } elseif ($userRole == 'teacher') {
-            return view('teacher.dashboard', compact('courses', 'lessons', 'totalcourses', 'totallessons', 'userBankCost'));
+            return view('teacher.dashboard', compact('courses', 'lessons', 'totalcourses', 'totallessons', 'userBankCost', 'totalCourseViews'));
         }
     }
 
