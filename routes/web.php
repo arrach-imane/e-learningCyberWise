@@ -18,12 +18,12 @@ Route::get('category/{id}', [NormalController::class, 'shows_category'])->name('
 Route::get('/search_courses', [NormalController::class, 'search_courses'])->name('search_courses');
 Route::get('profile/withdraw/', [NormalController::class, 'withdraw']);
 Route::get('teacher_courses/{id?}', [NormalController::class, 'teacher_courses'])->name('teacher_courses');
+Route::get('courses/{id}', [NormalController::class, 'courses'])->name('static.course');
 
 //learner
 
 Route::group(['middleware' => ['learner']], function () {
     Route::get('learner/dashboard', [LearnerController::class, 'dashboard'])->name('learner.dashboard');
-    Route::get('courses/{id}', [NormalController::class, 'courses'])->name('static.course');
     Route::post('bank', [NormalController::class, 'bank']);
     Route::post('buy-course', [NormalController::class, 'buyCourse'])->name('buy-course');
     Route::get('/lessons/{id}', [EnrollController::class, 'lessons'])->name('lessons');
