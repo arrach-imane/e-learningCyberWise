@@ -12,10 +12,18 @@
                     </div>
                 </div>
 
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">Description</h3>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ $course->course_description }}</li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h3 class="card-title">Course content </h3>
+                        <h3 class="card-title">Course content</h3>
                         @foreach ($lessons as $lesson)
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">{{ $lesson->lesson_title }}</li>
@@ -24,23 +32,8 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">Instructor</h2>
-                        <div class="media">
-                            <img src="instructor-photo.jpg" class="mr-3 rounded-circle" alt="Instructor Photo"
-                                style="width: 64px; height: 64px;">
-                            <div class="media-body">
-                                <h5 class="mt-0">Instructor Name</h5>
-                                <p>Instructor bio goes here.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-           </div> --}}
 
             <div class="col-md-4">
-
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2 class="card-title">Preview This Course</h2>
@@ -71,40 +64,12 @@
                         @endif
                     </div>
                 </div>
-                <div class="member-box hover-effect" data-url="{{ url('teacher_courses', ['id' => $course->user_id]) }}">
-                    <div class="s-member">
-                        <div class="media align-items-center">
-                            @if ($course->user->user_photo)
-                                <img id="profileImage" src="{{ asset('upload/' . basename($course->user->user_photo)) }}" class="img-fluid rounded-circle rounded-circle-border" alt="{{ $course->user->full_name }}" width="100px">
-                            @else
-                                <img id="profileImage" src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-fluid rounded-circle rounded-circle-border" alt="User-Profile-Image" width="100px">
-                            @endif
-                            <div class="media-body ml-5">
-                                <p>{{ $course->user->full_name }}</p>
-                                <span>{{ $course->user->role }}</span>
-                            </div>
-                            <div class="tm-social">
-                                <a href="#"><i class="fa fa-phone"></i></a>
-                                <a href="#"><i class="fa fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2 class="card-title">Requirements</h2>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">{{ $course->course_requirements }}</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title">Description</h2>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ $course->course_description }}</li>
                         </ul>
                     </div>
                 </div>

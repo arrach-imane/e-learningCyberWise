@@ -53,14 +53,14 @@
                                 <div id="collapse{{ $index }}" class="collapse {{ $index == 0 ? 'show' : '' }}"
                                     data-parent="#accordion4">
                                     <div class="card-body">
-                                        <div class="course-video" data-video="{{ $lesson->lesson_video }}"
-                                            id="videoPlayer{{ $index }}"></div>
                                         @if(!empty($lesson->lesson_content))
-                                            <div class="lesson-content mt-3">
+                                            <div class="lesson-content mb-4">
                                                 <h6>Lesson Content</h6>
                                                 <div style="white-space: pre-line;">{!! nl2br(e($lesson->lesson_content)) !!}</div>
                                             </div>
                                         @endif
+                                        <div class="course-video" data-video="{{ $lesson->lesson_video }}"
+                                            id="videoPlayer{{ $index }}" style="max-width: 640px; margin: 0 auto;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -98,6 +98,22 @@
             border-bottom: 2px solid currentColor;
             /* Creates an underline effect */
             width:
+        }
+
+        .course-video {
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .lesson-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
     </style>
 @endsection
