@@ -47,6 +47,12 @@ class LearnerController extends Controller
             ];
         }
 
+        // Fetch all available courses
+        $availableCourses = CoursesModel::with(['category', 'user'])
+            ->where('course_visibility', 'true')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         // Get categories for navigation
         $categories = CategoryModel::all();
 
@@ -54,13 +60,14 @@ class LearnerController extends Controller
             'enrolledCourses',
             'courseProgress',
             'categories',
-            'userRole'
+            'userRole',
+            'availableCourses'
         ));
     }
 
     private function getUserBankCost($user_id)
     {
         $bank = BankModel::where('user_id', $user_id)->first();
-        return $bank ? $bank->balance : 0;
+        return $bank ? $bank->bank_cost : 0;
     }
 }

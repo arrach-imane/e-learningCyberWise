@@ -78,9 +78,45 @@
                             <i class="ti-book text-muted" style="font-size: 48px;"></i>
                             <h5 class="mt-3">No courses enrolled yet</h5>
                             <p class="text-muted">Start your learning journey by enrolling in a course.</p>
-                            <a href="{{ url('category/1') }}" class="btn btn-primary">Browse Courses</a>
                         </div>
                     @endif
+                </div>
+            </div>
+
+            <!-- Available Courses -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Available Courses</h5>
+                    <div class="row">
+                        @foreach($availableCourses as $course)
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <img src="{{ asset('photos/courses/' . $course->course_thumbnail) }}"
+                                         class="card-img-top"
+                                         alt="{{ $course->course_title }}"
+                                         style="height: 160px; object-fit: cover;">
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{ $course->course_title }}</h6>
+                                        <p class="card-text text-muted small">
+                                            <i class="ti-user"></i> {{ $course->user->full_name }}<br>
+                                            <i class="ti-tag"></i> {{ $course->category->category_title }}
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                @if($course->course_discount)
+                                                    <span class="text-muted text-decoration-line-through">${{ number_format($course->course_price, 2) }}</span>
+                                                    <span class="text-primary fw-bold">${{ number_format($course->getDiscountedPrice(), 2) }}</span>
+                                                @else
+                                                    <span class="text-primary fw-bold">${{ number_format($course->course_price, 2) }}</span>
+                                                @endif
+                                            </div>
+                                            <a href="{{ url('courses/' . $course->course_id) }}" class="btn btn-primary btn-sm">View Course</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
