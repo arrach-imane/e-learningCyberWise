@@ -21,7 +21,7 @@
         });
     });
 
-    
+
     document.addEventListener('DOMContentLoaded', (event) => {
         var totalLessons = document.querySelectorAll('.lesson-checkbox').length;
         var completedLessons = 0;
